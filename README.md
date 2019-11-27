@@ -1,31 +1,19 @@
-Messages module
-===============
-Entyties needed for chat api
-
-Installation
-------------
-
-The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
-
-Either run
-
+После установки расширения необходимо поднять миграции
 ```
-php composer.phar require --prefer-dist apuc/yii2-msg-module "*"
+php yii migrate/up —migrationPath=@vendor/apuc/yii2-msg-module/migrations
 ```
-
-or add
-
+Так же необходимо добавить правила маршрутизации в конфиг вашего приложения
+```$xslt
+'urlManager' => [
+    ...
+    'rules' => [
+        ['class' => 'yii\rest\UrlRule', 'controller' =>
+            [
+                'dialog/dialog-message',
+                'dialog/dialog',
+                'dialog/dialog-user',
+            ],
+            'pluralize'=>false],
+    ],
+],
 ```
-"apuc/yii2-msg-module": "*"
-```
-
-to the require section of your `composer.json` file.
-
-
-Usage
------
-
-Once the extension is installed, simply use it in your code by  :
-
-```php
-<?= \apuc\msg_module\AutoloadExample::widget(); ?>```
